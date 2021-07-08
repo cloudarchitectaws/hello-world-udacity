@@ -23,26 +23,12 @@ jobs:
         at: ~/
       - run: cat ~/output.txt
  
-  environment_variable:
-    docker:
-      - image: cimg/base:2020.01
-    steps:
-      - run:
-          name: "echo an env var that is part of our project"
-          command: |
-            echo $MY_ENV_VAR # this env var must be set within the project
-
+  
 workflows:
-  # Name the workflow "welcome"
-  welcome:
-    # Run the welcome/run job in its own container
+  my_workflow:
     jobs:
-      - welcome/run
-      - print_hello
-      - print_world:
-          requires:
-            - print_hello
-      - environment_variable
       - save_hello_world_output
-      - print_output_file
+      - print_output_file:
+          requires:
+            - save_hello_world_output
       
