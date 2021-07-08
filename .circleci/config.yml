@@ -17,6 +17,8 @@ jobs:
     steps:
       - run: echo hello
   environment_variable:
+    docker:
+      - image: cimg/base:2020.01
     steps:
       - run:
           name: "echo an env var that is part of our project"
